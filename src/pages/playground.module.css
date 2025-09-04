@@ -1,0 +1,185 @@
+.playgroundContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.playgroundContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 996px) {
+  .playgroundContent {
+    grid-template-columns: 1fr;
+  }
+}
+
+.editorSection,
+.outputSection {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.editorHeader,
+.outputHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.editorHeader h3,
+.outputHeader h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.editorActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.runButton {
+  padding: 0.5rem 1rem;
+  background-color: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.runButton:hover:not(:disabled) {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.runButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.runButton.running {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.clearButton {
+  padding: 0.4rem 0.8rem;
+  background-color: var(--ifm-color-secondary);
+  color: var(--ifm-color-secondary-contrast-foreground);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.2s;
+}
+
+.clearButton:hover {
+  background-color: var(--ifm-color-secondary-dark);
+}
+
+.editorWrapper {
+  height: 400px;
+}
+
+.outputWrapper {
+  height: 400px;
+  overflow-y: auto;
+  background-color: var(--ifm-color-emphasis-0);
+}
+
+.emptyOutput {
+  padding: 2rem;
+  text-align: center;
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+}
+
+.output {
+  margin: 0;
+  padding: 1rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  background-color: var(--ifm-color-emphasis-0);
+}
+
+.outputLine {
+  margin-bottom: 0.2rem;
+}
+
+.tips {
+  background-color: var(--ifm-color-emphasis-100);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--ifm-color-primary);
+}
+
+.tips h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.tips ul {
+  margin-bottom: 0;
+}
+
+.tips li {
+  margin-bottom: 0.5rem;
+}
+
+/* Dark theme adjustments */
+[data-theme='dark'] .editorSection,
+[data-theme='dark'] .outputSection {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .editorHeader,
+[data-theme='dark'] .outputHeader {
+  background-color: var(--ifm-color-emphasis-200);
+  border-bottom-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .outputWrapper {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+[data-theme='dark'] .output {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+[data-theme='dark'] .tips {
+  background-color: var(--ifm-color-emphasis-200);
+}

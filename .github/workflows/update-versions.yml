@@ -1,0 +1,140 @@
+name: Update Documentation Versions
+
+# This workflow is triggered when a new release is published in the helpers4/helpers4 repository
+on:
+  repository_dispatch:
+    types: [new-release]
+  # Allow manual triggering with version input
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to create documentation for'
+        required: true
+        type: string
+      library_version:
+        description: 'Library version this docs version corresponds to'
+        required: false
+        type: string
+
+jobs:
+  create-version:
+    name: Create New Documentation Version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout documentation repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Extract version from payload
+        id: extract-version
+        run: |
+          if [ "${{ github.event_name }}" == "repository_dispatch" ]; then
+            VERSION="${{ github.event.client_payload.version }}"
+            LIBRARY_VERSION="${{ github.event.client_payload.library_version }}"
+          else
+            VERSION="${{ github.event.inputs.version }}"
+            LIBRARY_VERSION="${{ github.event.inputs.library_version || github.event.inputs.version }}"
+          fi
+          
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "library_version=${LIBRARY_VERSION}" >> $GITHUB_OUTPUT
+          echo "Creating documentation version: ${VERSION}"
+          echo "For library version: ${LIBRARY_VERSION}"
+
+      - name: Check if version already exists
+        id: check-version
+        run: |
+          if [ -f "versions.json" ] && grep -q "\"${{ steps.extract-version.outputs.version }}\"" versions.json; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Version ${{ steps.extract-version.outputs.version }} already exists"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Version ${{ steps.extract-version.outputs.version }} is new"
+          fi
+
+      - name: Create new documentation version
+        if: steps.check-version.outputs.exists == 'false'
+        run: |
+          # Create new version
+          bun scripts/version.ts create "${{ steps.extract-version.outputs.version }}"
+
+      - name: Update documentation content
+        if: steps.check-version.outputs.exists == 'false'
+        run: |
+          # Update any version-specific content
+          # This could include updating package.json references, version badges, etc.
+          
+          # Update the introduction page with the new version
+          if [ -f "docs/intro.md" ]; then
+            sed -i "s/Version [0-9.a-zA-Z-]*/Version ${{ steps.extract-version.outputs.library_version }}/g" docs/intro.md
+          fi
+
+      - name: Update Docusaurus configuration
+        if: steps.check-version.outputs.exists == 'false'
+        run: |
+          # This is a placeholder - in a real implementation, you would
+          # programmatically update the docusaurus.config.ts file
+          echo "Manual step required: Update docusaurus.config.ts with new version configuration"
+
+      - name: Commit and push changes
+        if: steps.check-version.outputs.exists == 'false'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add documentation version ${{ steps.extract-version.outputs.version }}"
+            git push
+          fi
+
+      - name: Create Pull Request
+        if: steps.check-version.outputs.exists == 'false'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add documentation version ${{ steps.extract-version.outputs.version }}"
+          title: "📚 Add documentation for version ${{ steps.extract-version.outputs.version }}"
+          body: |
+            ## New Documentation Version
+            
+            This PR adds documentation for Helpers4 version `${{ steps.extract-version.outputs.version }}`.
+            
+            ### Changes
+            - ✅ Created versioned documentation snapshot
+            - ✅ Updated version selector configuration
+            - ⚠️  Manual update required for `docusaurus.config.ts`
+            
+            ### Library Version
+            This documentation version corresponds to Helpers4 library version `${{ steps.extract-version.outputs.library_version }}`.
+            
+            ### Next Steps
+            1. Review the changes
+            2. Manually update `docusaurus.config.ts` if needed
+            3. Merge this PR to make the new version available
+            
+            ---
+            *This PR was automatically created by the documentation update workflow.*
+          branch: "docs/version-${{ steps.extract-version.outputs.version }}"
+          delete-branch: true
+
+      - name: Comment on existing version
+        if: steps.check-version.outputs.exists == 'true'
+        run: |
+          echo "::notice::Documentation version ${{ steps.extract-version.outputs.version }} already exists. Skipping creation."

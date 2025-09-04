@@ -1,0 +1,68 @@
+{
+  "name": "@helpers4/doc",
+  "version": "1.0.0",
+  "private": true,
+  "author": "baxyz <baxy@etik.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helpers4/doc.git"
+  },
+  "description": "Documentation website for helpers4 library",
+  "keywords": [
+    "helper",
+    "typescript",
+    "documentation",
+    "docusaurus"
+  ],
+  "license": "AGPL-3.0",
+  "scripts": {
+    "preinstall": "node -e \"if(!process.env.npm_config_user_agent?.startsWith('bun')){console.log('Use bun as package manager');process.exit(1);}\"",
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "bun run deploy:script",
+    "deploy:script": "bun run build && bun scripts/deploy.ts",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/preset-classic": "^3.5.2",
+    "@docusaurus/theme-search-algolia": "^3.5.2",
+    "@monaco-editor/react": "^4.6.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "^3.5.2",
+    "@docusaurus/types": "^3.5.2",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-react": "^7.32.0",
+    "typescript": "^5.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
+  }
+}
