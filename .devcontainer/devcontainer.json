@@ -1,5 +1,5 @@
 {
-  "name": "Helpers4 Documentation",
+  "name": "Helpers4 Doc",
   "image": "oven/bun:latest",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {
