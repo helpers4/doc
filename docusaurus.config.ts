@@ -115,11 +115,11 @@ const config: Config = {
           items: [
             {
               label: 'Introduction',
-              to: '/docs/intro',
+              to: '/docs/current/intro',
             },
             {
               label: 'Getting Started',
-              to: '/docs/getting-started',
+              to: '/docs/current/getting-started',
             },
           ],
         },

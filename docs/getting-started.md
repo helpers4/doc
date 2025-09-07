@@ -229,13 +229,13 @@ const processData = memoize((data: number[]) => {
 ## Next Steps
 
 - Explore the [API Reference](./api/array/array-equals.md) for detailed function documentation
-- Try the [Interactive Playground](../playground) to experiment with helpers
+- Try the [Interactive Playground](/playground) to experiment with helpers
 - Check out [Examples](./examples/basic-usage.md) for common use cases
 - Read the [Migration Guide](./examples/migration.md) if coming from other libraries
 
 ## Need Help?
 
 - 📖 Browse the complete [API documentation](./api/array/array-equals.md)
-- 🎮 Experiment in the [Playground](../playground)
+- 🎮 Experiment in the [Playground](/playground)
 - 🐛 Report issues on [GitHub](https://github.com/helpers4/helpers4/issues)
 - 💬 Join discussions on [GitHub Discussions](https://github.com/helpers4/helpers4/discussions)

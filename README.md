@@ -25,11 +25,13 @@ This repository contains the documentation website for the Helpers4 TypeScript u
 3. **Start development server**
    ```bash
    bun start
+   # or alternatively
+   bun run dev
    ```
 
-   This will start the development server at `http://localhost:3000`. The site will automatically reload when you make changes.
+   This will start the development server at `http://localhost:3000` (accessible at `http://0.0.0.0:3000` in Docker environments). The site will automatically reload when you make changes.
 
-### Using Dev Container
+### Using Dev Container (Recommended)
 
 If you prefer using VS Code with Dev Containers:
 
@@ -37,6 +39,9 @@ If you prefer using VS Code with Dev Containers:
 2. When prompted, click "Reopen in Container" or use Command Palette: `Dev Containers: Reopen in Container`
 3. The container will automatically set up the environment and install dependencies
 4. Run `bun start` to start the development server
+5. The server will be accessible at `http://localhost:3000/doc/` on your host machine
+
+> **Note**: The development server is configured to listen on `0.0.0.0:3000` to be accessible from outside the Docker container. Port 3000 is automatically forwarded by the dev container configuration.
 
 ## 📁 Project Structure
 
@@ -242,6 +247,46 @@ ssh -T git@github.com
 ```
 
 ### Getting Help
+
+## 🐛 Troubleshooting
+
+### Development Server Issues in Docker/Dev Container
+
+If the development server is not accessible from your host machine:
+
+1. **Check server binding**: Ensure the server is listening on `0.0.0.0` instead of `localhost`:
+   ```bash
+   bun start  # Already configured with --host 0.0.0.0
+   ```
+
+2. **Verify port forwarding**: The dev container automatically forwards port 3000, but you can check:
+   ```bash
+   # Server should show: http://localhost:3000/doc/
+   # And be accessible from host at the same URL
+   ```
+
+3. **Check dev container configuration**: Port 3000 should be listed in `.devcontainer/devcontainer.json`:
+   ```json
+   "forwardPorts": [3000]
+   ```
+
+### Common Issues
+
+**Build fails with broken links**
+- Check all internal links in markdown files
+- Ensure referenced files exist
+- Verify relative paths are correct
+
+**TypeScript errors in React components**
+- Run `bun typecheck` to identify issues
+- Check import paths and component props
+
+**Development server won't start**
+- Clear cache: `bun clear`
+- Reinstall dependencies: `rm -rf node_modules && bun install`
+- Check port availability: `lsof -i :3000`
+
+## 🔗 Useful Links
 
 - 📖 [Docusaurus Documentation](https://docusaurus.io/)
 - 🐛 [Report Issues](https://github.com/helpers4/doc/issues)
