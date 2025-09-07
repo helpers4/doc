@@ -5,8 +5,8 @@
  * This script creates new documentation versions and updates version selectors
  */
 
-import { existsSync, mkdirSync, copyFileSync, writeFileSync, readFileSync } from 'fs';
-import { join, dirname } from 'path';
+import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'fs';
+import { join } from 'path';
 import { spawn } from 'bun';
 
 interface VersionConfig {
@@ -117,7 +117,6 @@ function copyDirectoryRecursive(src: string, dest: string): void {
     mkdirSync(dest, { recursive: true });
   }
 
-  const entries = Bun.file(src).exists();
   // This is a simplified version - in a real implementation,
   // you'd want to use a proper directory copying utility
   console.log(`Copying ${src} to ${dest}`);
