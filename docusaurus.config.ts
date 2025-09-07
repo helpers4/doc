@@ -5,13 +5,13 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Helpers4',
   tagline: 'A comprehensive TypeScript utility library with tree-shaking support',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.svg',
 
   // Set the production url of your site here
   url: 'https://helpers4.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/doc/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -156,6 +156,11 @@ const config: Config = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Helpers4. Built with Docusaurus.`,
     },
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
@@ -165,7 +170,7 @@ const config: Config = {
       { name: 'keywords', content: 'typescript, javascript, utility, library, tree-shaking, helpers' },
       { name: 'author', content: 'Helpers4 Team' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:image', content: 'https://helpers4.github.io/doc/img/helpers4-social-card.jpg' },
+      { property: 'og:image', content: 'https://helpers4.github.io/img/helpers4-social-card.jpg' },
       { property: 'twitter:card', content: 'summary_large_image' },
     ],
   } satisfies Preset.ThemeConfig,

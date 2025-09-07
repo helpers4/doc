@@ -73,7 +73,9 @@
   },
   "containerEnv": {
     "SSH_AUTH_SOCK": "${localEnv:SSH_AUTH_SOCK}",
-    "GPG_TTY": "/dev/pts/0"
+    "GPG_TTY": "/dev/pts/0",
+    // Ensure the dev server is accessible externally
+    "HOST": "0.0.0.0"
   },
   "mounts": [
     "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",

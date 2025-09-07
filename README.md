@@ -27,6 +27,9 @@ This repository contains the documentation website for the Helpers4 TypeScript u
    bun start
    # or alternatively
    bun run dev
+
+   # or alternatively
+   bun run dev
    ```
 
    This will start the development server at `http://localhost:3000` (accessible at `http://0.0.0.0:3000` in Docker environments). The site will automatically reload when you make changes.
@@ -39,7 +42,7 @@ If you prefer using VS Code with Dev Containers:
 2. When prompted, click "Reopen in Container" or use Command Palette: `Dev Containers: Reopen in Container`
 3. The container will automatically set up the environment and install dependencies
 4. Run `bun start` to start the development server
-5. The server will be accessible at `http://localhost:3000/doc/` on your host machine
+5. The server will be accessible at `http://localhost:3000/` on your host machine
 
 > **Note**: The development server is configured to listen on `0.0.0.0:3000` to be accessible from outside the Docker container. Port 3000 is automatically forwarded by the dev container configuration.
 
@@ -261,7 +264,7 @@ If the development server is not accessible from your host machine:
 
 2. **Verify port forwarding**: The dev container automatically forwards port 3000, but you can check:
    ```bash
-   # Server should show: http://localhost:3000/doc/
+   # Server should show: http://localhost:3000/
    # And be accessible from host at the same URL
    ```
 
