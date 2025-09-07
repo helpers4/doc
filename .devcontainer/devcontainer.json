@@ -1,6 +1,6 @@
 {
-  "name": "Helpers4 Doc",
-  "image": "oven/bun:latest",
+  "name": "H4 Doc",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {
       "ppa": true,
@@ -13,10 +13,7 @@
       "installOhMyZsh": true,
       "username": "vscode"
     },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "lts",
-      "nodeGypDependencies": true
-    },
+    "ghcr.io/rails/devcontainer/features/bun:1.0.2": {},
     "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:0.0.5": {}
   },
   "customizations": {
@@ -101,6 +98,5 @@
       "label": "Docusaurus Dev Server",
       "onAutoForward": "notify"
     }
-  },
-  "remoteUser": "vscode"
+  }
 }
