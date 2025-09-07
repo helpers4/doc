@@ -1,19 +1,9 @@
 {
   "name": "H4 Doc",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:latest",
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {
-      "ppa": true,
-      "version": "latest"
-    },
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": true,
-      "configureZshAsDefaultShell": true,
-      "installOhMyZsh": true,
-      "username": "vscode"
-    },
-    "ghcr.io/rails/devcontainer/features/bun:1.0.2": {},
+    "ghcr.io/prulloac/devcontainer-features/bun:1": {},
     "ghcr.io/baxyz/devcontainer-features/shell-history-per-project:0.0.5": {}
   },
   "customizations": {
@@ -89,7 +79,7 @@
     "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
     "source=${localEnv:HOME}/.gnupg,target=/home/vscode/.gnupg,type=bind,consistency=cached"
   ],
-  "postCreateCommand": "bash .devcontainer/setup-container.sh && bun install",
+  "postCreateCommand": "bun install",
   "forwardPorts": [
     3000
   ],

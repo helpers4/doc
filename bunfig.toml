@@ -5,7 +5,7 @@ smol_toml = "^0.1.0"
 [install]
 cache = false
 lockfile = true
-auto = "bun"
+auto = true
 registry = "https://registry.npmjs.org/"
 production = false
 dev = true

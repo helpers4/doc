@@ -25,53 +25,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'api/array/array-equals',
             'api/array/chunk',
-            'api/array/difference',
-            'api/array/intersection',
-            'api/array/one-in-common',
-            'api/array/sort',
-            'api/array/unique',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Function Helpers',
-          items: [
-            'api/function/debounce',
-            'api/function/is-defined-and-not-null',
-            'api/function/memoize',
-            'api/function/return-or-throw-error',
-            'api/function/throttle',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Object Helpers',
-          items: [
-            'api/object/deep-clone',
-            'api/object/deep-merge',
-            'api/object/get',
-            'api/object/remove-undefined-null',
-            'api/object/set',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Promise Helpers',
-          items: [
-            'api/promise/console-log-promise',
-            'api/promise/delay',
-            'api/promise/falsy-promise-or-throw',
-            'api/promise/meaning-promise-or-throw',
-            'api/promise/retry',
-            'api/promise/truthy-promise-or-throw',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'String Helpers',
-          items: [
-            'api/string/camel-case',
-            'api/string/capitalize',
           ],
         },
       ],
@@ -81,8 +34,6 @@ const sidebars: SidebarsConfig = {
       label: 'Examples',
       items: [
         'examples/basic-usage',
-        'examples/tree-shaking',
-        'examples/migration',
       ],
     },
   ],

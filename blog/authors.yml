@@ -1,0 +1,13 @@
+helpers4-team:
+  name: Helpers4 Team
+  title: Core Development Team
+  url: https://github.com/helpers4
+  image_url: https://github.com/helpers4.png
+  email: contact@helpers4.dev
+
+baxyz:
+  name: Baptiste
+  title: Lead Developer
+  url: https://github.com/baxyz
+  image_url: https://github.com/baxyz.png
+  email: baxy@etik.com
